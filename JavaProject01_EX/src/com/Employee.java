@@ -9,6 +9,8 @@ public class Employee {
 		this.eno = eno;
 		this.ename = ename;
 		this.esal = esal;
+		otp='xxxxxxxx'
+		
 	}
 	void printDetails() {
 		System.out.println("The Values are "+eno+" "+ename+" "+"  "+esal);
