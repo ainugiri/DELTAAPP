@@ -10,6 +10,9 @@ public class Employee {
 		this.ename = ename;
 		this.esal = esal;
 		otp='xxxxxxxx'
+		adding different function to the same file()
+		already some changes made at ctrl,
+		
 		
 	}
 	void printDetails() {
