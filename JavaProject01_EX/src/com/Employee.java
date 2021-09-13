@@ -10,6 +10,7 @@ public class Employee {
 		this.ename = ename;
 		this.esal = esal;
 		otp='xxxxxxxx'
+			functionlogin()
 		
 	}
 	void printDetails() {
