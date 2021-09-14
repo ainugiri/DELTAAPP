@@ -21,3 +21,5 @@ task :default => "pkg/#{spec.name}-#{spec.version}.gem" do
     puts "generated latest version"
 end
 
+GIT Versioning Tool
+Source Code Management
