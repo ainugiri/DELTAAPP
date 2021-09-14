@@ -1,0 +1,486 @@
+
+1. Preparation
+RUN: 
+git config --global user.name "Your Name" 
+git config --global user.email "your_email@whatever.com"
+
+RUN: 
+git config --global core.autocrlf input
+ git config --global core.safecrlf warn
+
+RUN: 
+git config --global core.autocrlf true 
+git config --global core.safecrlf warn
+
+3. Creating a Project
+
+RUN: 
+mkdir hello 
+cd hello 
+touch hello.html
+
+RUN: 
+git init
+
+RUN: 
+git add hello.html 
+git commit -m "First Commit"
+
+4. Checking the status of the repository
+
+RUN: 
+git status
+
+5.Making changes
+
+FILE: HELLO.HTML 
+<h1>Hello, World!</h1>
+ Checking the status 
+Check the working directory’s status.
+
+RUN: 
+git status 
+You will see
+
+6.Staging the changes
+
+RUN: 
+git add hello.html
+ git status
+You will see …
+
+7.Staging and committing
+
+git add a.html 
+git add b.html 
+git commit -m "Changes for a and b" 
+git add c.html 
+git commit -m "Unrelated change to c"
+
+8.Commiting the changes
+
+RUN: git commit
+
+Checking the status
+
+RUN: 
+git status
+
+9.Changes, not files
+
+RUN: 
+git add hello.html
+
+RUN: 
+git status
+
+RUN: 
+git commit -m "Added standard HTML page tags" 
+git status
+
+RUN: git add . 
+git status
+
+RUN: 
+git commit -m "Added HTML header"
+
+10.History
+
+RUN: 
+git log
+
+RUN:
+ git log --pretty=oneline
+RUN:
+git log --pretty=format:"%h %ad | %s%d [%an]" --graph --date=short
+
+11.Goals
+RUN: 
+git config --global alias.co checkout 
+git config --global alias.ci commit 
+git config --global alias.st status 
+git config --global alias.br branch
+git config --global alias.hist "log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short" 
+git config --global alias.type 'cat-file -t' 
+git config --global alias.dump 'cat-file -p'
+
+12.Getting older versions
+
+RUN: 
+git hist
+
+RUN: 
+git checkout <hash>
+ cat hello.html
+
+RUN: 
+git checkout master 
+cat hello.html
+
+13.Tagging versions
+
+RUN: 
+git tag v1
+
+RUN: 
+git checkout v1^ 
+cat hello.html
+
+RUN: 
+git tag v1-beta
+
+RUN: 
+git checkout v1 
+git checkout v1-beta
+
+RUN: 
+git tag
+
+RUN: 
+git hist master --all
+
+14. Discarding local changes
+
+RUN: 
+git checkout master
+
+RUN: 
+git status
+
+RUN: 
+git checkout hello.html 
+git status 
+cat hello.html
+
+15. Cancel Staged changes
+
+RUN: 
+git add hello.html
+
+RUN: 
+git status 
+
+RUN: 
+git reset HEAD hello.html
+
+RUN: git checkout hello.html 
+git status
+
+16. Cancelling commits
+
+RUN: 
+git add hello.html 
+git commit -m "Oops, we didn't want this commit" 
+
+RUN: 
+git revert HEAD
+
+RUN: 
+git hist
+
+17. Removing a commit from a branch
+
+RUN: 
+git hist
+
+RUN:
+git tag oops
+
+RUN:
+git reset --hard v1 
+git hist
+
+RUN:
+git hist --all
+
+18. Removing the oops tag
+
+RUN: 
+git tag -d oops 
+git hist --all
+
+19. Changing commits
+
+RUN: 
+git add hello.html  
+git commit -m "Add an author comment"
+
+RUN: 
+git add hello.html 
+git commit --amend -m "Add an author/email comment"
+
+RUN: git hist
+
+20. Moving files
+RUN: 
+mkdir lib 
+git mv hello.html lib 
+git status
+
+RUN: 
+git commit -m "Moved hello.html to lib"
+
+21. More information about the structure
+
+RUN: 
+git add index.html 
+git commit -m "Added index.html."
+
+22. Inside Git: .Git directory
+
+RUN: 
+ls -C .git
+
+RUN: 
+ls -C .git/objects
+
+RUN: 
+ls -C .git/objects/<dir>
+
+RUN:
+cat .git/config
+
+RUN:
+ ls .git/refs 
+ls .git/refs/heads 
+ls .git/refs/tags 
+cat .git/refs/tags/v1
+
+HEAD File
+RUN: 
+cat .git/HEAD
+
+24. Creating a Branch
+
+RUN: 
+git checkout -b style 
+git status
+
+RUN: 
+touch lib/style.css
+
+RUN: 
+git add lib/style.css 
+git commit -m "Added css stylesheet"
+
+RUN: git add lib/hello.html 
+git commit -m "Hello uses style.css"
+
+RUN: 
+git add index.html 
+git commit -m "Updated index.html"
+
+25. Navigating Branches
+
+RUN: 
+git hist --all
+
+RUN: 
+git checkout master 
+cat lib/hello.html
+
+RUN: 
+git checkout style 
+cat lib/hello.html
+
+26. Changes to master branch
+
+RUN: 
+git checkout master 
+git add README 
+git commit -m "Added README"
+
+27. View the different branches
+
+RUN: 
+git hist --all
+
+28. Merging
+
+RUN: 
+git checkout style 
+git merge master 
+git hist --all
+
+29. Creating a conflict
+
+RUN: 
+git add lib/hello.html 
+git commit -m 'Life is great!'
+
+RUN: 
+git hist --all
+
+30. Resolving Conflicts
+
+RUN: 
+git checkout style 
+git merge master
+
+RUN: 
+git add lib/hello.html 
+git commit -m "Merged master fixed conflict."
+
+31. Relocating as an alternative to merging
+
+32. Resetting the style branch
+
+RUN: 
+git checkout style 
+git hist
+
+RUN: 
+git reset --hard <hash>
+
+RUN: 
+git hist --all
+
+33. Reset of the Master branch
+
+RUN: 
+git checkout master 
+git hist
+
+RUN: 
+git reset --hard <hash> 
+git hist --all
+
+34. Rebase
+
+RUN: 
+git checkout style 
+git rebase master 
+git hist
+
+35. Merging to the Master branch
+
+RUN: 
+git checkout master 
+git merge style 
+
+RUN: 
+git hist
+
+36. Multiple repositories
+
+37. Cloning repositories
+
+RUN: 
+cd .. 
+pwd
+
+RUN: 
+git clone hello cloned_hello 
+ls
+
+38. Examine the cloned repository
+
+RUN: 
+cd cloned_hello 
+ls
+
+RUN: 
+git hist --all
+
+38. Examine the cloned repository
+
+RUN: 
+cd cloned_hello
+ ls
+
+RUN: 
+git hist --all
+
+40. Remote branches
+
+RUN: 
+git branch
+
+RUN: 
+git branch -a
+
+41. Changing the original repository
+
+RUN: 
+cd ../hello 
+# (You should be in the original hello repository now)
+
+RUN: git add README git commit -m "Changed README in original repo"
+
+42. Fetching changes
+
+RUN: 
+cd ../cloned_hello 
+git fetch 
+git hist --all
+
+RUN: 
+cat README
+
+43. Merging pulled changes
+
+RUN: 
+git merge origin/master
+
+RUN: cat README
+
+44. Pulling and merging changes
+
+git pull
+git merge origin/master
+
+45. Adding a tracking branch
+
+RUN: 
+git branch --track style origin/style 
+git branch -a 
+git hist --max-count=2
+
+46. Bare repos
+
+Creating a bare repository. 
+RUN: 
+cd .. 
+git clone --bare hello hello.git 
+ls hello.git
+
+47. Adding a remote repository
+
+RUN: 
+cd hello 
+git remote add shared ../hello.git
+
+48. Submitting changes
+
+RUN: 
+git checkout master 
+git add README 
+git commit -m "Added shared comment to readme"
+
+49. Removing common changes
+
+RUN: 
+cd ../cloned_hello
+
+RUN: 
+git remote add shared ../hello.git 
+git branch --track shared master 
+git pull shared master 
+cat README
+
+50. Placing your git repository
+
+RUN: 
+# (From the work directory) 
+git daemon --verbose --export-all --base-path=.
+
+RUN: 
+# (From the work directory) 
+git clone git://localhost/hello.git network_hello 
+cd network_hello
+ls
+51. Sharing repositories
+To learn to share repositories via WIFI. 
+Check, whether your neighbor runs a git daemon. Exchange your IP-addresses, then check whether you can extract changes from each other’s repos.
+
+

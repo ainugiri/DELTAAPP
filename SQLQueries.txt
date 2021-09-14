@@ -1,0 +1,84 @@
+/*  1. SQL command to list all tables in Oracle:
+    Show all tables owned by the current user:   */
+
+SELECT table_name
+  FROM user_tables;
+
+/*   Show all tables in the current database:    */
+SELECT table_name
+  FROM dba_tables;
+
+/*   Show all tables in the current database:   */
+SELECT table_name
+  FROM all_tables;
+
+
+/*Data Definition Language (DDL)
+DDL changes the structure of the table like creating a table, deleting a table, altering a table, etc.
+All the command of DDL are auto-committed that means it permanently save all the changes in the database.
+Here are some commands that come under DDL:
+
+CREATE
+ALTER
+DROP
+TRUNCATE  */
+
+/*	CREATE It is used to create a new table in the database. 
+   	SYNTAX: 
+		CREATE TABLE TABLE_NAME (
+          	COLUMN_NAME DATATYPES[,....]);  				*/
+	CREATE TABLE EMPLOYEE(
+            Name VARCHAR2(20), 
+           Email VARCHAR2(100), 
+             DOB DATE);  
+
+
+/*	ALTER: It is used to alter the structure of the database. 
+	This change could be either to modify the characteristics of an 
+	existing attribute or probably to add a new attribute.
+	Syntax:
+		To add a new column in the table
+		ALTER TABLE table_name ADD column_name COLUMN-definition;
+		To modify existing column in the table:
+		ALTER TABLE table_name MODIFY(column_definitions....);  	*/
+
+ALTER TABLE employee
+        ADD address VARCHAR2(200);
+ALTER TABLE employee
+     MODIFY address VARCHAR2(50);
+
+
+
+***********
+
+SELECT
+
+select CUSTOMER_ID,FULL_NAME,EMAIL_ADDRESS
+from  CUSTOMERS
+SELECT BY PRIMARY KEY
+
+select FULL_NAME,EMAIL_ADDRESS
+from  CUSTOMERS
+where CUSTOMER_ID = :CUSTOMER_ID
+INSERT
+
+insert into CUSTOMERS (
+ CUSTOMER_ID,FULL_NAME,EMAIL_ADDRESS
+) values (
+  :CUSTOMER_ID,:FULL_NAME,:EMAIL_ADDRESS
+);
+UPDATE
+
+update  CUSTOMERS set
+  FULL_NAME= :FULL_NAME,EMAIL_ADDRESS= :EMAIL_ADDRESS
+where 
+  CUSTOMER_ID = :CUSTOMER_ID
+DELETE
+
+delete from CUSTOMERS  where CUSTOMER_ID = :CUSTOMER_ID
+
+
+
+	
+
+

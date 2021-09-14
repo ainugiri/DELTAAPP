@@ -1,0 +1,55 @@
+CREATE SEQUENCE EMPID
+ START WITH 56820000
+ INCREMENT BY 1
+ NOCACHE
+ NOCYCLE;
+ 
+ CREATE TABLE employee
+( 
+ID number(10),
+NAME char(20)
+);
+
+
+INSERT into employee VALUES(EMPID.nextval,'Giri');
+INSERT into employee VALUES(EMPID.nextval,'Prasad');
+INSERT into employee VALUES(EMPID.nextval,'Anamika');
+
+
+select EMPID.nextval FROM dual;
+
+CREATE SEQUENCE ORDID
+ START WITH 20210900001
+ INCREMENT BY 1
+ NOCACHE
+ NOCYCLE;
+ 
+CREATE TABLE OrderDetails
+(
+ord_ID number(12),
+ord_date date
+);
+
+insert into OrderDetails values(ORDID.nextval, sysdate);
+ 
+ 
+ SELECT ord_id, ord_date + INTERVAL '8' DAY AS "Due Date"
+ FROM orderDetails
+ ORDER BY ord_id, "Due Date";
+
+ SELECT ord_id, EXTRACT(DAY FROM (SYSDATE - ord_date) DAY TO SECOND)
+ || ' days '
+ || EXTRACT(HOUR FROM (SYSDATE - ord_date) DAY TO SECOND)
+ || ' hours ' 
+|| EXTRACT(SECOND FROM (SYSDATE - ord_date) DAY TO SECOND)
+ || ' Minutes '
+|| EXTRACT(MINUTE FROM (SYSDATE - ord_date) DAY TO SECOND)
+ || ' Seconds ' "Interval"
+ FROM OrderDetails;	
+
+
+
+SELECT 9 + 9, 9.9 * 9.9, 9-9, 9/9 FROM DUAL;
+SELECT 25e-03 FROM DUAL;
+SELECT 25f FROM DUAL;
+SELECT 3.14D FROM DUAL;

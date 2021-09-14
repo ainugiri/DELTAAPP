@@ -1,0 +1,42 @@
+data:
+	raw
+	entity
+	information
+
+Information
+	Sender	Sender	Date 		From 	SEnder	Reciever
+	country	Reg 	Sent		Country	Name	Name
+	code	No
+	nl	5023631	12/08/2021	NL	maggie	Giri
+
+Database
+	Collection of data in org
+	
+
+SQL	->	Structure Query Lang
+		
+Table
+	Rows and Columns
+
+	Tuple
+	Column Name - Attribute
+
+DBMS?	
+	System	-	Program or S/W
+	Manage	-	Creation Read	Update	Delete
+	
+
+Database	-	?
+
+	RDBMS	-	Relational -	codd's rule?
+		MySQL		/12
+		Oracle		/12
+		MongoDB		/12
+		MS-Access	/12
+
+
+DTS 	-	?
+
+
+
+				
